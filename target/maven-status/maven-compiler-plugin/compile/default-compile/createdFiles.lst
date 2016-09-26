@@ -1,0 +1,3 @@
+org/ssd/logsimulator/app/LogSimulatorApplication.class
+org/ssd/logsimulator/web/controller/LogController.class
+org/ssd/logsimulator/app/configuration/LogSimulatorConfiguration.class
