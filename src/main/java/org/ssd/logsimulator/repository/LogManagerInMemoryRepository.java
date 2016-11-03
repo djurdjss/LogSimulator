@@ -55,6 +55,5 @@ public class LogManagerInMemoryRepository implements LogManagerRepository {
 		private synchronized void inrcrementId(){
 			currentId ++;
 		}
-		
 	}
 }
