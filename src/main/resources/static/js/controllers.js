@@ -1,15 +1,15 @@
 var controllers = angular.module('LogSimulatorControllers', ['ngResource']);
 
 controllers.controller('HomeController', [
-                        '$scope','$location','ApplicationResource',
+                        '$scope','$location','LogManagerResource',
         function($scope,$location,ApplicationResource) {
            
            $scope.setupData = function(){
         	   console.log("In setup data");
         	   
-        	   var Applications = new ApplicationResource();
+        	   var LogManager = new LogManagerResource();
 	        	
-	        	Applications.$create(function(response){
+        	   LogManager.$listLogEntries(function(response){
 	        		console.log(angular.toJson(response))
 	        		console.log(angular.toJson(response.data));
 	        		$location.path("/setup");
@@ -21,7 +21,7 @@ controllers.controller('HomeController', [
 
 
 controllers.controller('LogSetupController', [
-                      '$scope','$location','ApplicationResource','ApplicationVisualizationService',
+                      '$scope','$location','LogManagerResource',
         function($scope,$location,ApplicationResource,ApplicationVisualizationService) {
         
 	        init = function(){
