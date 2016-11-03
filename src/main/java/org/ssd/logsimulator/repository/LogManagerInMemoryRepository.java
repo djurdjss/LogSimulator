@@ -25,22 +25,26 @@ public class LogManagerInMemoryRepository implements LogManagerRepository {
 	}
 
 	@Override
-	public void create(LogEntry logEntry) {
+	public LogEntry create(LogEntry logEntry) {
 		logEntry.setId(idGenerator.getCurrentId());
-		logEntriesMap.put(logEntry.getId(), logEntry);
-		
+		return logEntriesMap.put(logEntry.getId(), logEntry);
 	}
 
 	@Override
-	public void delete(long id) {
-		logEntriesMap.remove(id);
-		
+	public LogEntry delete(long id) {
+		return logEntriesMap.remove(id);
 	}
 
 	@Override
-	public void update(LogEntry logEntry) {
-		logEntriesMap.replace(logEntry.getId(), logEntry);
+	public LogEntry update(LogEntry logEntry) {
+		return logEntriesMap.replace(logEntry.getId(), logEntry);
 		
+	}
+	
+
+	@Override
+	public LogEntry findById(long id) {
+		return logEntriesMap.get(id);
 	}
 
 	private class SequencialIdGenerator{

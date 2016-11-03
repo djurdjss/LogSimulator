@@ -23,18 +23,23 @@ public class LogMangerServiceImpl implements LogManagerService{
 	}
 
 	@Override
-	public void save(LogEntry logEntry) {
-		logManagerRepository.create(logEntry);
+	public LogEntry save(LogEntry logEntry) {
+		return logManagerRepository.create(logEntry);
 	}
 
 	@Override
-	public void delete(long id) {
-		logManagerRepository.delete(id);
+	public LogEntry delete(long id) {
+		return logManagerRepository.delete(id);
 	}
 
 	@Override
-	public void update(LogEntry logEntry) {
-		logManagerRepository.update(logEntry);
+	public LogEntry update(LogEntry logEntry) {
+		return logManagerRepository.update(logEntry);
+	}
+	
+	@Override
+	public LogEntry findById(long id) {
+		return logManagerRepository.findById(id);
 	}
 
 	@Override

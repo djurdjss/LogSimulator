@@ -9,10 +9,12 @@ public interface LogManagerRepository extends Serializable {
 	
 	public List<LogEntry> listAll();
 	
-	public void create(LogEntry logEntry);
+	public LogEntry create(LogEntry logEntry);
 	
-	public void delete(long id);
+	public LogEntry delete(long id);
 	
-	public void update(LogEntry logEntry);
+	public LogEntry update(LogEntry logEntry);
+	
+	public LogEntry findById(long id);
 	
 }

@@ -8,11 +8,13 @@ public interface LogManagerService {
 	
 	public List<LogEntry> viewAll();
 	
-	public void save(LogEntry logEntry);
+	public LogEntry save(LogEntry logEntry);
 	
-	public void delete(long id);
+	public LogEntry delete(long id);
 	
-	public void update(LogEntry logEntry);
+	public LogEntry update(LogEntry logEntry);
+	
+	public LogEntry findById(long id);
 	
 	public void simulateLogs();
 	
