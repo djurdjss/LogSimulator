@@ -10,13 +10,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.ssd.logsimulator.app.LogSimulatorApplication;
+import org.ssd.logsimulator.app.configuration.LogSimulatorConfiguration;
 import org.ssd.logsimulator.domain.LogEntry;
-import org.ssd.logsimulator.service.LogManagerService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=LogSimulatorApplication.class)
+@SpringBootTest
+@ContextConfiguration(classes=LogSimulatorConfiguration.class)
 public class LogManagerServiceTest {
 
 	@Autowired
