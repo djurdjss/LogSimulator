@@ -88,10 +88,10 @@ controllers.controller('LogStatementController', [
 	        		console.log(angular.toJson(response));
 	        		$scope.res.data = response.data;
 	        		console.log($scope.res);
+	        		$location.path("/setup");
 	        	},function(error){
 	        		//do nothing for now - just a demo
 	        	});
-	        	 $location.path("/setup");
 	        };
 	        
 	        
