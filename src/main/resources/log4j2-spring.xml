@@ -13,7 +13,7 @@
       		<TimeBasedTriggeringPolicy />
     	</RollingFile>
     	
-    	<RollingFile name="LogSimulatorLogStatementsAppender" fileName="logs/logStatements.log" filePattern="logs/app-%d{MM-dd-yyyy}.log"
+    	<RollingFile name="LogSimulatorLogStatementsAppender" fileName="logs/logStatements.log" filePattern="logs/logStatements-%d{MM-dd-yyyy}.log"
                  ignoreExceptions="false">
       		<PatternLayout>
         		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
