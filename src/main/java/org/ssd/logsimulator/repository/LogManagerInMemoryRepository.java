@@ -41,6 +41,11 @@ public class LogManagerInMemoryRepository implements LogManagerRepository {
 		
 	}
 	
+	@Override
+	public void deleteAll() {
+		this.logEntriesMap.clear();
+		
+	}
 
 	@Override
 	public LogEntry findById(long id) {
@@ -60,4 +65,5 @@ public class LogManagerInMemoryRepository implements LogManagerRepository {
 			currentId ++;
 		}
 	}
+
 }

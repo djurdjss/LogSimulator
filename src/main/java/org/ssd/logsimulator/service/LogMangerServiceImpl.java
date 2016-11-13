@@ -3,6 +3,7 @@ package org.ssd.logsimulator.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.ssd.logsimulator.domain.LogEntry;
 import org.ssd.logsimulator.repository.LogManagerRepository;
@@ -12,9 +13,13 @@ public class LogMangerServiceImpl implements LogManagerService{
 
 	private LogManagerRepository logManagerRepository;
 	
+	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+	
 	@Autowired
-	public LogMangerServiceImpl(LogManagerRepository logManagerRepository){
+	public LogMangerServiceImpl(LogManagerRepository logManagerRepository,
+			ThreadPoolTaskExecutor threadPoolTaskExecutor){
 		this.logManagerRepository = logManagerRepository;
+		this.threadPoolTaskExecutor = threadPoolTaskExecutor;
 	}
 	
 	@Override
@@ -41,14 +46,26 @@ public class LogMangerServiceImpl implements LogManagerService{
 	public LogEntry findById(long id) {
 		return logManagerRepository.findById(id);
 	}
+	
+	@Override
+	public void deleteAll() {
+		logManagerRepository.deleteAll();
+	}
 
 	@Override
 	public void simulateLogs() {
 		List<LogEntry> logEntries = logManagerRepository.listAll();
 		
 		for (LogEntry logEntry : logEntries){
-			
+			threadPoolTaskExecutor.execute(new LogTask(logEntry));
 		}
+		
+		while (threadPoolTaskExecutor.getActiveCount() > 0){
+//			System.out.println("Active Threads = " + threadPoolTaskExecutor.getActiveCount());
+		}
+		
+//		threadPoolTaskExecutor.shutdown();
+		
 	}
 
 }

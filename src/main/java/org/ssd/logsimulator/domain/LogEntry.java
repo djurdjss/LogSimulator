@@ -2,6 +2,9 @@ package org.ssd.logsimulator.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class LogEntry implements Serializable {
 
 	private static final long serialVersionUID = 6140949891635541048L;
@@ -54,6 +57,11 @@ public class LogEntry implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String toJsonString() throws JsonProcessingException{
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.writeValueAsString(this);
 	}
 
 }

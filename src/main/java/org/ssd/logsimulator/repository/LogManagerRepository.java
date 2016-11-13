@@ -17,4 +17,6 @@ public interface LogManagerRepository extends Serializable {
 	
 	public LogEntry findById(long id);
 	
+	public void deleteAll();
+	
 }
