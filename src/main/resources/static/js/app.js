@@ -13,6 +13,10 @@ appModule.config(['$locationProvider', '$routeProvider',
       	controller:'LogSetupController',
           templateUrl: 'view/setup.html',
           label : 'SetupData'               
+      }).when('/logstatement/add', {
+      	controller:'LogStatementController',
+          templateUrl: 'view/add.html',
+          label : 'Add Log Statement'               
       }).otherwise({
     	  redirectTo : "/home"
       });

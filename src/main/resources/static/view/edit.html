@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Edit Log Statement</div>
+	  <div class="panel-body">
+	  	Currently Configured Log Statements:
+	  	
+	  	<table ng-repeat="logStatement in logStatements.data">
+	  		<tr>
+	  			<td>{{logStatement}}</td>
+	  		</tr>
+	  		<!-- 
+	  		<tr>
+	  			<td><a ng-click="displayApplication(application.id);">{{application.name}} - Default</a></td>
+	  		</tr>
+	  		<tr>
+	  			<td><a ng-click="displayApplicationGraphCurved(application.id);">{{application.name}} - Curved</a></td>
+	  		</tr>
+	  		<tr>	
+	  			<td><a ng-click="displayApplicationGraphImage(application.id);">{{application.name}} - Image</a></td>
+	  		</tr>
+	  		 -->
+	  	</table>
+	  
+	  </div>
+	</div>
+</div>

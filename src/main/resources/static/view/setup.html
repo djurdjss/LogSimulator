@@ -1,21 +1,37 @@
 <div class="row">
 	<div class="panel panel-default">
-	  <div class="panel-heading">Data Setup Summary</div>
+	  <div class="panel-heading">Log Statements Configuration</div>
 	  <div class="panel-body">
-	  	Summary of created applications:
+	  	Currently Configured Log Statements:
 	  	
-	  	<table ng-repeat="application in applications.data">
-	  		<tr>
-	  			<td><a ng-click="displayApplication(application.id);">{{application.name}} - Default</a></td>
-	  		</tr>
-	  		<tr>
-	  			<td><a ng-click="displayApplicationGraphCurved(application.id);">{{application.name}} - Curved</a></td>
-	  		</tr>
-	  		<tr>	
-	  			<td><a ng-click="displayApplicationGraphImage(application.id);">{{application.name}} - Image</a></td>
-	  		</tr>
+	  	<table class="table">
+	  		<thead>
+	  			<tr>
+	  				<td>ID</td>
+		  			<td>Username</td>
+		  			<td>Operation Name</td>
+		  			<td>Log Data</td>
+		  			<td>Per Minute Log Frequency</td>
+		  			<td></td>
+		  			<td></td>
+	  			</tr>
+	  		</thead>
+	  		<tbody ng-repeat="logStatement in logStatements.data">
+		  		<tr>
+		  			<td>{{logStatement.id}}</td>
+		  			<td>{{logStatement.username}}</td>
+		  			<td>{{logStatement.operationName}}</td>
+		  			<td>{{logStatement.logData}}</td>
+		  			<td>{{logStatement.perMinuteLogFrequency}}</td>
+		  			<td><button type="button" class="btn btn-default navbar-btn" ng-click="editLogStatement(logStatement.id);">Edit</button></td>
+		  			<td><button type="button" class="btn btn-default navbar-btn" ng-click="deleteLogStatement(logStatement.id);">Delete</button></td>
+		  		</tr>
+	  		</tbody>
 	  	</table>
-	  
+	  	<div class="row">
+	  		<button ng-click="addLogStatement();">Add Log Statement</button>
+	  		<button ng-click="simulateLogs();">Simulate</button>
+	  	</div>
 	  </div>
 	</div>
 </div>
