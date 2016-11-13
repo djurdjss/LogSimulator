@@ -3,15 +3,16 @@ package org.ssd.logsimulator.app.configuration;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-@Configuration
-@ComponentScan(basePackages = {"org.ssd.logsimulator.web.controller,org.ssd.logsimulator.service"})
+@SpringBootConfiguration()
+@ComponentScan(basePackages = {"org.ssd.logsimulator"})
 public class LogSimulatorConfiguration {
     
 	@Bean(name="conversionService")
@@ -26,5 +27,14 @@ public class LogSimulatorConfiguration {
 	protected Set<Converter> getConverters(){
 		Set<Converter> converters = new  HashSet<Converter>();
 		return converters;
+	}
+	
+	@Bean
+	public ThreadPoolTaskExecutor taskExecutor() {
+		ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
+		pool.setCorePoolSize(5);
+		pool.setMaxPoolSize(10);
+		pool.setWaitForTasksToCompleteOnShutdown(true);
+		return pool;
 	}
 }
