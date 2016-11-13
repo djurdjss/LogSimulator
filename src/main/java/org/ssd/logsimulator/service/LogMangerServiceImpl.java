@@ -59,12 +59,7 @@ public class LogMangerServiceImpl implements LogManagerService{
 		for (LogEntry logEntry : logEntries){
 			threadPoolTaskExecutor.execute(new LogTask(logEntry));
 		}
-		
-		while (threadPoolTaskExecutor.getActiveCount() > 0){
-//			System.out.println("Active Threads = " + threadPoolTaskExecutor.getActiveCount());
-		}
-		
-//		threadPoolTaskExecutor.shutdown();
+
 		
 	}
 

@@ -38,7 +38,7 @@ public class LogTask implements Runnable{
 	}
 	
 	protected void recordLogStatement(LogEntry logEntry) throws JsonProcessingException{
-		//logger.info(logEntry.toJsonString());
+		logger.info(logEntry.toJsonString());
 		System.out.println("Log Statements = " + logEntry.toJsonString());
 	}
 	
