@@ -2,7 +2,8 @@ package org.ssd.logsimulator.web.controller;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ public class LogController {
 
 	private LogManagerService logManagerService;
 	
-	private Logger logger = Logger.getLogger(this.getClass().getName());
+	private Logger logger = LogManager.getLogger(this.getClass().getName());
 	
 	
 	@Autowired
