@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-*8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	
+	<appender name="LogSimulatorConsole" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="INFO"/>
+		<param name="Target" value="System.out"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p: %c - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="LogSimulatorRollingFile" class="org.apache.log4j.RolingFileAppender">
+		<param name="Threshold" value="INFO"/>
+		<param name="File" value="/logSimulator.log"/>
+		<param name="Append" value="True"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<param name="MaxBackupIndex" value="20"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p: %c - %m%n"/>
+		</layout>
+	</appender>
+	
+	<appender name="LogSimulatorLogStatementsAppender" class="org.apache.log4j.RolingFileAppender">
+		<param name="Threshold" value="INFO"/>
+		<param name="Append" value="True"/>
+		<param name="File" value="/logStatements.log"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<param name="MaxBackupIndex" value="20"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p: %c - %m%n"/>
+		</layout>
+	</appender>
+	
+	<logger name="org.ssd.logsimulator.service.LogTask">
+		<level value="info"/>
+		<appender-ref ref="LogSimulatorLogStatementsAppender"/>
+	</logger>
+	
+	<root>
+		<level value="info"/>
+		<appender-ref ref="LogSimulatorConsole"/>
+		<appender-ref ref="LogSimulatorRollingFile"/>
+	</root>
+
+
+</log4j:configuration>
