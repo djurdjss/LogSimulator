@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" name="LogSimulator" packages="">
-	<Properties>
-		<Property name ="SparkLogs.json">export/Users/andrewclark/repos/SparkFlumeIDS/SparkLog</Property>
-	</Properties>
 	<Appenders>
 		<Console name="LogSimulatorConsole" target="SYSTEM_OUT" ignoreExceptions="false">
       		<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p: %c - %m%n"/>
@@ -16,7 +13,7 @@
       		<TimeBasedTriggeringPolicy />
     	</RollingFile>
     	
-    	<RollingFile name="LogSimulatorLogStatementsAppender" fileName="logs/logStatements.log" filePattern="logs/logStatements-%d{MM-dd-yyyy}.log"
+    	<RollingFile name="LogSimulatorLogStatementsAppender" fileName="/Users/andrewclark/Repos/SparkFlumeIDS/SparkLog/ApplicationLogs.json" filePattern="/Users/andrewclark/Repos/SparkFlumeIDS/SparkLog/ApplicationLogs-%d{MM-dd-yyyy}.json"
                  ignoreExceptions="false">
       		<PatternLayout>
         		<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
