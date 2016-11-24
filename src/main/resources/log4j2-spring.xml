@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" name="LogSimulator" packages="">
 	<Properties>
-		<Property name = "SparkLogs">export /Users/andrewclark/repos/SparkFlumeIDS/SparkLog</Property>
+		<Property name ="SparkLogs.json">export/Users/andrewclark/repos/SparkFlumeIDS/SparkLog</Property>
 	</Properties>
 	<Appenders>
 		<Console name="LogSimulatorConsole" target="SYSTEM_OUT" ignoreExceptions="false">
