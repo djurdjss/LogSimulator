@@ -1,8 +1,10 @@
 package org.ssd.logsimulator.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 import org.ssd.logsimulator.domain.LogEntry;
@@ -15,11 +17,14 @@ public class LogMangerServiceImpl implements LogManagerService{
 	
 	private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 	
+	private RedisTemplate<String,String> redisTemplate;
+	
 	@Autowired
 	public LogMangerServiceImpl(LogManagerRepository logManagerRepository,
-			ThreadPoolTaskExecutor threadPoolTaskExecutor){
+			ThreadPoolTaskExecutor threadPoolTaskExecutor, RedisTemplate<String,String> redisTemplate){
 		this.logManagerRepository = logManagerRepository;
 		this.threadPoolTaskExecutor = threadPoolTaskExecutor;
+		this.redisTemplate = redisTemplate;
 	}
 	
 	@Override
@@ -55,12 +60,14 @@ public class LogMangerServiceImpl implements LogManagerService{
 	@Override
 	public void simulateLogs() {
 		List<LogEntry> logEntries = logManagerRepository.listAll();
-		
 		for (LogEntry logEntry : logEntries){
-			threadPoolTaskExecutor.execute(new LogTask(logEntry));
+			threadPoolTaskExecutor.execute(new LogTask(logEntry, redisTemplate));
 		}
-
-		
 	}
 
+	@Override
+	public List<String> displayFlagedLogs() {
+		Set<String> keys = redisTemplate.keys("BAD_SIM1*");
+		return redisTemplate.opsForValue().multiGet(keys);
+	}
 }

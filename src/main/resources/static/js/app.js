@@ -17,7 +17,11 @@ appModule.config(['$locationProvider', '$routeProvider',
       	controller:'LogStatementController',
           templateUrl: 'view/add.html',
           label : 'Add Log Statement'               
-      }).otherwise({
+      }).when('/monitor', {
+        	controller:'LogMonitorController',
+            templateUrl: 'view/monitor.html',
+            label : 'Monitor Logs'               
+        }).otherwise({
     	  redirectTo : "/home"
       });
   }

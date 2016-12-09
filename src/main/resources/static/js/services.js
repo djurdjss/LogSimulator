@@ -9,5 +9,12 @@ services.factory('LogManagerResource',function($resource){
 		delete:{method:'DELETE',params:{action:'delete',id:"@id"},isArray:false},
 		simulate:{method:'POST',params:{action:'simulate'},isArray:false}
 	});
+});
+
+services.factory('LogMonitorResource',function($resource){
+	
+	return $resource('monitor/:action',{id:"@id"},{
+		listFlagedLogEntries:{method:'GET',params:{action:''},isArray:false}
+	});
 	
 });

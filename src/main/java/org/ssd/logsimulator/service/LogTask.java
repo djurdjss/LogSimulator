@@ -1,7 +1,10 @@
 package org.ssd.logsimulator.service;
 
+import java.util.UUID;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.ssd.logsimulator.domain.LogEntry;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,14 +13,17 @@ public class LogTask implements Runnable{
 
 	private static final int SECONDS_PER_MINUTE = 60;
 	
-	private static final int LOG_DURATION_IN_MINUTES = 1;
+	private static final int LOG_DURATION_IN_MINUTES = 3;
 	
 	private Logger logger = LogManager.getLogger(this.getClass().getName());
 	
 	private LogEntry logEntry;
 	
-	public LogTask(LogEntry logEntry){
+	private RedisTemplate<String,String> redisTemplate;
+	
+	public LogTask(LogEntry logEntry,RedisTemplate<String,String> redisTemplate){
 		this.logEntry = logEntry;
+		this.redisTemplate = redisTemplate;
 	}
 	
 	@Override
@@ -40,7 +46,10 @@ public class LogTask implements Runnable{
 	
 	protected void recordLogStatement(LogEntry logEntry) throws JsonProcessingException{
 		logger.info(logEntry.toJsonString());
-		System.out.println("Log Statements = " + logEntry.toJsonString());
+		String key = "SIM1" + UUID.randomUUID().toString();
+		String value = logEntry.toJsonString(); 
+		redisTemplate.opsForValue().set(key, value);
+		System.out.println("Log Statements = " + key + ":" + value);
 	}
 	
 	protected void processLogStatement() throws Exception{

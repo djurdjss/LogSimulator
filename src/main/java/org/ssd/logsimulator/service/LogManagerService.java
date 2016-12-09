@@ -16,6 +16,8 @@ public interface LogManagerService {
 	
 	public LogEntry findById(long id);
 	
+	public List<String> displayFlagedLogs();
+	
 	public void deleteAll();
 	
 	public void simulateLogs();

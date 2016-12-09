@@ -94,6 +94,33 @@ controllers.controller('LogStatementController', [
 	        	});
 	        };
 	        
+	        init();
+}]);
+
+
+controllers.controller('LogMonitorController', [
+                      '$scope','$location','LogMonitorResource',
+                      
+        function($scope,$location,LogMonitorResource) {
+        
+	        init = function(){
+	        	console.log("HERE@");
+	        	$scope.res = {data:[]};
+	        	
+	        	var LogMonitor = new LogMonitorResource();
+	        	LogMonitor.$listFlagedLogEntries({},function(response){
+	        		console.log(angular.toJson(response));
+	        		$scope.res.data = response.data;
+	        		console.log($scope.res);
+	        	},function(error){
+	        		//do nothing for now - just a demo
+	        	});
+	        };
+	       
+	        $scope.cancel = function(){
+	        	 $location.path("/setup");
+	        };
 	        
 	        init();
 }]);
+
